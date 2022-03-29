@@ -4,10 +4,10 @@ string1 := '1000';
 string2 := '1111';
 
 // '#2' IS VITAL TO KNOW WE ARE WORKING WITH BASE 2, IF WE DON'T DO IT THIS WAY, THE PLC WILL TAKE THIS AS BASE 10 AND 
-// THE CONVERSION TO BYTE WILL BE WRONG.
+// THE CONVERSION TO BYTE WILL BE WRONG 
 
-StringCombined := CONCAT ('#2', string1, string2); 
+StringCombined := CONCAT ('#2', string1, string2); // '2#10001111' 
 
-// Final conversion
+// Final conversion. FUNCTION MAY VARY DEPENDING ON THE PLC SOFTWARE 
 
-FinalByte := TO_BYTE (StringCombined); // FUNCTION MAY VARY DEPENDING ON THE PLC SOFTWARE 
+FinalByte := TO_BYTE (StringCombined); // Results in BYTE#16#8F
