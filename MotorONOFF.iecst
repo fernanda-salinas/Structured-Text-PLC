@@ -1,0 +1,24 @@
+/*
+SIMPLE PROGRAM TO TURN ON/OFF A MOTOR/DIGITAL OUTPUT WITH STRUCTURED TEXT PROGRAMMING LANGUAGE. 
+
+If we stop the motor, and we turn it on again, the PLC will only turn it on after x seconds have passed. This is done
+for motor's protection. 
+
+*/
+
+IGNITION := (START OR IGNITION) AND NOT LOCKED AND NOT STOP; // Interlock for Ignition
+
+
+IF STOP THEN
+    LOCKED := TRUE;
+    tonIn := TRUE;
+END_IF
+
+tonSecurityTime(
+    IN := tonIn,
+    PT := T#10S );
+    
+IF tonSecurityTime.Q  THEN
+    LOCKED := FALSE;
+    tonIn := FALSE;
+END_IF 
